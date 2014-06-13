@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body{
+            position:relative;
+            padding:0;
+            margin:0;
+        }
+
+        #circumscribe{
+            position:fixed;
+            right:-580px;
+            top:-170px;
+        }
+
+        .path {
+            stroke-dasharray: 9000;
+            stroke-dashoffset: 9000;
+            animation: dash 5s linear linear forwards;
+            -webkit-animation: dash 15s linear forwards ;
+        }
+
+        @keyframes dash {
+            from {
+                stroke-dashoffset: 9000;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        @-webkit-keyframes dash {
+            from {
+                stroke-dashoffset: 9000;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+<svg version="1.1" id="circumscribe" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1040px" height="1040px" viewBox="0 0 1040 1040" enable-background="new 0 0 340 333" xml:space="preserve" shape-rendering="geometricPrecision">
+
+    <circle class="path" cx="520" cy="520" r="512" stroke="#ddd" fill="transparent" stroke-width="2"></circle>
+<circle class="path" cx="520" cy="520" r="414.21670111997304" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
+    <polygon class="path" points="8,520 361.7832988800269,1006.9409363431187 934.216701119973,820.9460491737464 934.2167011199731,219.0539508262538 361.783298880027,33.05906365688139 " stroke="#ccc" stroke-width="2" opacity="1" fill="none">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 520 520" to="360 520 520" dur="320s" repeatCount="indefinite"></animateTransform>
+    </polygon>
+    <circle class="path" cx="520" cy="520" r="292.8954382426543" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
+    <polygon class="path" points="105.78329888002696,520 520,934.2167011199731 934.2167011199731,520 520.0000000000001,105.78329888002696 " stroke="#ccc" stroke-width="2" opacity="1" fill="none">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 520 520" to="360 520 520" dur="256s" repeatCount="indefinite"></animateTransform>
+    </polygon>
+    <circle class="path" cx="520" cy="520" r="146.44771912132714" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
+    <polygon class="path" points="227.10456175734572,520 666.447719121327,773.6548901707149 666.4477191213273,266.3451098292853 " stroke="#ccc" stroke-width="2" opacity="1" fill="none">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 520 520" to="360 520 520" dur="192s" repeatCount="indefinite"></animateTransform>
+    </polygon>
+    <circle class="path" cx="520" cy="520" r="0" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
+</svg>
+
+
+<!--320 256 192-->
+</body>
+</html>

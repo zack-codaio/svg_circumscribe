@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <title></title>
+    <style>
+        body, html{
+            font-family:sans-serif;
+        }
+        .button{
+            display:inline-block;
+            padding:10px 20px;
+            margin: 10px;
+            border-radius:3px;
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<svg version="1.1" id="circumscribe" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1040px" height="1040px" viewBox="0 0 1040 1040" enable-background="new 0 0 340 333" xml:space="preserve" shape-rendering="geometricPrecision" >
+
+    <circle cx="520" cy="520" r="512" stroke="#ddd" fill="transparent" stroke-width="2"/>
+    <!--<polygon points="60,30 90,90 30,90">-->
+        <!--<animateTransform attributeName="transform"-->
+                          <!--attributeType="XML"-->
+                          <!--type="rotate"-->
+                          <!--from="0 60 70"-->
+                          <!--to="360 60 70"-->
+                          <!--dur="10s"-->
+                          <!--repeatCount="indefinite"/>-->
+    <!--</polygon>-->
+</svg>
+
+<input type="number" id="poly_n" value="5">
+<div onclick="update_paths()" class="button">Add Path</div>
+<div onclick="clear_paths()" class="button">Clear All Paths</div>
+<div onclick="animate_paths()" class="button">Animate Paths</div>
+</body>
+
+<script>
+    //default constants
+    var origin = 520;
+    var r1 = 512;
+    var n1 = 5;
+    var svgNS = "http://www.w3.org/2000/svg";
+
+    inscribe_turtle(r1, origin, origin, n1);
+
+    //because it turtles all the way down
+    function inscribe_turtle(radius, origin_x, origin_y, n){
+        var new_radius = inscribe_circle(radius, n);
+        if(n >= 3){
+            append_polygon_path(find_polygon_points(radius, origin_x,origin_y, n));
+            inscribe_turtle(new_radius, origin_x, origin_y, n-1);
+        }
+    }
+
+    function find_polygon_points(radius, origin_x, origin_y, n) {
+        var total_angle = (n - 2) * 180;
+        var corner_angle = total_angle / n;
+        var increment_angle = 180 - corner_angle;
+        var points = new Array();
+        var cur_angle = 0;
+        for (var i = 0; i < n; i++) {
+            console.log(cur_angle);
+//            console.log(Math.cos(cur_angle));
+//            console.log(Math.sin(cur_angle));
+            points[i] = new Array(); //each point is a two value array
+            points[i][0] = origin_x - radius * Math.cos(toRadians(cur_angle)); //point i, x-coordinate
+            points[i][1] = origin_y + radius * Math.sin(toRadians(cur_angle)); //point i, y-coordinate
+            cur_angle += increment_angle;
+
+        }
+        return points;
+    }
+
+    function toDegrees (angle) {
+        return angle * (180 / Math.PI);
+    }
+    function toRadians (angle) {
+        return angle * (Math.PI / 180);
+    }
+
+    function append_polygon_path(points) {
+        var newpath = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+
+        var points_string = "";
+        for (var i = 0; i < points.length; i++) {
+            points_string += points[i][0] + "," + points[i][1] + " ";
+        }
+
+        newpath.setAttribute('points', points_string);
+
+        newpath.setAttribute("stroke", "#ccc");
+        newpath.setAttribute("stroke-width", 2);
+        newpath.setAttribute("opacity", 1);
+        newpath.setAttribute("fill", "none");
+
+        document.getElementById("circumscribe").appendChild(newpath);
+    }
+
+    function calculate_distances(points){
+        for(var i = 0; i < points.length; i++){
+            var nexti = i+1;
+            if(nexti >= points.length){
+                nexti = 0;
+            }
+            var distance = Math.sqrt(Math.pow((points[i][0] - points[nexti][0]),2)+Math.pow((points[i][1] - points[nexti][1]),2));
+            console.log(distance);
+        }
+    }
+
+    //inscribe a circle within polygon with points n and radius
+    function inscribe_circle(radius, n){
+        var total_angle = (n - 2) * 180;
+        var corner_angle = total_angle / n;
+        var increment_angle = 180 - corner_angle;
+        var use_angle = increment_angle /2;
+        var new_radius = radius*Math.cos(toRadians(use_angle));
+        append_circle_path(new_radius);
+        return new_radius;
+    }
+    function append_circle_path(radius){
+    //<circle cx="260" cy="260" r="256" stroke="black" fill="transparent" stroke-width="2"/>
+        var newpath = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        newpath.setAttribute('cx', origin);
+        newpath.setAttribute('cy', origin);
+        newpath.setAttribute('r', radius);
+        newpath.setAttribute("stroke", "#ddd");
+        newpath.setAttribute("stroke-width", 2);
+        newpath.setAttribute("opacity", 1);
+        newpath.setAttribute("fill", "none");
+        document.getElementById("circumscribe").appendChild(newpath);
+    }
+
+    function update_paths(){
+        var n = parseInt($("#poly_n").val());
+        inscribe_turtle(r1, origin, origin, n);
+        append_circle_path(r1);
+    }
+    function clear_paths(){
+        $('#circumscribe polygon').remove();
+        $('#circumscribe circle').remove();
+    }
+    function animate_paths(){
+        $('polygon').each(function(){
+            //$(this).append('<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 180 50" to="360 180 50" dur="4s" repeatCount="indefinite"></animateTransform>');
+
+            var a = document.createElementNS(svgNS, "animateTransform");
+
+            a.setAttributeNS(null, "attributeName", "transform");
+            a.setAttributeNS(null, "attributeType", "XML");
+            a.setAttributeNS(null, "type", "rotate");
+            a.setAttributeNS(null, "dur", "5s");
+            a.setAttributeNS(null, "repeatCount", "indefinite");
+            a.setAttributeNS(null, "from", "0 "+origin+" "+origin);
+            a.setAttributeNS(null, "from", "360 "+origin+" "+origin);
+            console.log(this);
+            this.appendChild(a);
+            a.beginElement();
+
+        })
+    }
+
+</script>
+
+
+</html>
