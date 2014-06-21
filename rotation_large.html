@@ -1,24 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
         body{
             position:relative;
             padding:0;
             margin:0;
+            font-family:CenturyGothicStd,sans-serif;
+            background: #333333;
+            color:#929292;
+            font-weight:100;
+        }
+        *{
+            box-sizing:border-box;
+        }
+        img{
+            max-width:100%;
+            max-height:100%;
+        }
+        .navbar{
+            position:fixed;
+            height:80px;
+            width:100%;
+            background:rgba(20,20,20,.8);
+            padding:10px;
+            vertical-align:top;
+            line-height:60px;
+            z-index:3;
+
+
+            background: #141414; /* Old browsers */
+            background: -moz-linear-gradient(left, rgba(20,20,20,.9) 0%, rgba(20,20,20,.5) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(20,20,20,.9)), color-stop(100%,rgba(20,20,20,.5))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(left, rgba(20,20,20,1) 0%,rgba(20,20,20,.5) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(left, rgba(20,20,20,.9) 0%,rgba(20,20,20,.5) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(left, rgba(20,20,20,.9) 0%,rgba(20,20,20,.5) 100%); /* IE10+ */
+            background: linear-gradient(to right, rgba(20,20,20,.9) 0%,rgba(20,20,20,.5) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#141414', endColorstr='#141414',GradientType=1 ); /* IE6-9 */
+        }
+        .social{
+            vertical-align:top;
+            line-height:60px;
+            font-size:26px;
+            float:right;
+            margin-left:15px;
+            margin-right:10px;
+            transition: color .3s;
+        }
+        .social:hover{
+            color:white;
+        }
+        .nav_element{
+            line-height:60px;
+            display:inline-block;
+            vertical-align:top;
+            margin:0 15px;
+            transition: color .3s;
+        }
+        .nav_element:hover{
+            color:white;
+        }
+        .nav_element:first-of-type{
+            margin-left:50px;
+        }
+
+        .maincontent{
+            padding:40px;
+            max-width:800px;
+            padding-top:80px;
+
+        }
+        .row{
+            padding-top:40px;
+            padding-bottom:40px;
+            border-top:1px solid #929292;
+        }
+        .row:first-of-type{
+            border:none;
+        }
+
+        .row img{
+            width:300px;
+            height:200px;
+            -webkit-filter: saturate(0%);
+            filter: saturate(0%);
+            transition: .5s;
+        }
+        .row:hover img{
+            -webkit-filter: saturate(100%);
+            filter: saturate(100%);
+        }
+        .row_text{
+            display:inline-block;
+            vertical-align: top;
+            margin-left:20px;
+        }
+        .row_text h2{
+            margin-top:0;
         }
 
         #circumscribe{
             position:fixed;
+            z-index:-99;
             right:-580px;
             top:-170px;
         }
 
         .path {
+            stroke:rgba(102,102,102,.5) !important;
             stroke-dasharray: 9000;
             stroke-dashoffset: 9000;
             animation: dash 5s linear linear forwards;
             -webkit-animation: dash 15s linear forwards ;
+            /*fill:rgba(51,51,51,.3);*/
+            /*fill: rgba(0, 122, 255, 0.01);*/
+        }
+        .column{
+            width:49%;
+            display:inline-block;
+            vertical-align:top;
         }
 
         @keyframes dash {
@@ -31,31 +132,113 @@
         }
         @-webkit-keyframes dash {
             from {
+                /*fill:rgba(51,51,51,.0)*/
                 stroke-dashoffset: 9000;
             }
             to {
                 stroke-dashoffset: 0;
+                /*fill:rgba(51,51,51,.3)*/
             }
         }
     </style>
     <title></title>
+    <link rel="stylesheet" type="text/css" href="MyFontsWebfontsKit/MyFontsWebfontsKit.css">
+
 </head>
 <body>
+<div style="" class="navbar">
+    <img src="circumscribe_inline.png" style="height:100%;margin-bottom:30px;margin-left:0px;">
+    <div class="nav_element">
+        projects
+    </div>
+    <div class="nav_element">
+        about
+    </div>
+    <div class="nav_element">
+        blog
+    </div>
+    <i class="fa fa-github social"></i><i class="fa fa-linkedin social"></i><i class="fa fa-twitter social"></i>
+</div>
+<!--<img src="circumscribe%20logo@2x.png" style="width:250px;">-->
+<div class="maincontent">
+    <div class="row">
+        <img src="images/yuko_shimizu_dj.jpg">
+        <div class="row_text">
+            <h2>
+                Project 1
+            </h2>
+            <p>
+                this shit is the dankest shit ever.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <img src="images/yuko_shimizu_dj.jpg">
+        <div class="row_text">
+            <h2>
+                Project 2
+            </h2>
+            <p>
+                this shit is the dankest shit ever.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <img src="images/yuko_shimizu_dj.jpg">
+        <div class="row_text">
+            <h2>
+                Project 3
+            </h2>
+            <p>
+                this shit is the dankest shit ever.
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+    <!--<img src="circumscribe_inline.png" style="width:350px;margin-bottom:30px;">-->
+    <!--<div>-->
+        <!--<div class="column">-->
+            <!--<h2>Featured Projects</h2>-->
+        <!--</div>-->
+        <!--<div class="column">-->
+            <!--<h2>Latest Posts</h2>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--item-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--item-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--item-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+    <!--</div>-->
+</div>
 <svg version="1.1" id="circumscribe" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1040px" height="1040px" viewBox="0 0 1040 1040" enable-background="new 0 0 340 333" xml:space="preserve" shape-rendering="geometricPrecision">
 
     <circle class="path" cx="520" cy="520" r="512" stroke="#ddd" fill="transparent" stroke-width="2"></circle>
-<circle class="path" cx="520" cy="520" r="414.21670111997304" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
-    <polygon class="path" points="8,520 361.7832988800269,1006.9409363431187 934.216701119973,820.9460491737464 934.2167011199731,219.0539508262538 361.783298880027,33.05906365688139 " stroke="#ccc" stroke-width="2" opacity="1" fill="none">
+       <polygon class="path" points="8,520 361.7832988800269,1006.9409363431187 934.216701119973,820.9460491737464 934.2167011199731,219.0539508262538 361.783298880027,33.05906365688139 " stroke="#ccc" stroke-width="2" opacity="1" fill="none">
         <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 520 520" to="360 520 520" dur="320s" repeatCount="indefinite"></animateTransform>
     </polygon>
-    <circle class="path" cx="520" cy="520" r="292.8954382426543" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
-    <polygon class="path" points="105.78329888002696,520 520,934.2167011199731 934.2167011199731,520 520.0000000000001,105.78329888002696 " stroke="#ccc" stroke-width="2" opacity="1" fill="none">
+<circle class="path" cx="520" cy="520" r="414.21670111997304" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
+<polygon class="path" points="105.78329888002696,520 520,934.2167011199731 934.2167011199731,520 520.0000000000001,105.78329888002696 " stroke="#ccc" stroke-width="2" opacity="1" fill="none">
         <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 520 520" to="360 520 520" dur="256s" repeatCount="indefinite"></animateTransform>
     </polygon>
-    <circle class="path" cx="520" cy="520" r="146.44771912132714" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
+    <circle class="path" cx="520" cy="520" r="292.8954382426543" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
     <polygon class="path" points="227.10456175734572,520 666.447719121327,773.6548901707149 666.4477191213273,266.3451098292853 " stroke="#ccc" stroke-width="2" opacity="1" fill="none">
         <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 520 520" to="360 520 520" dur="192s" repeatCount="indefinite"></animateTransform>
     </polygon>
+    <circle class="path" cx="520" cy="520" r="146.44771912132714" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
+
     <circle class="path" cx="520" cy="520" r="0" stroke="#ddd" stroke-width="2" opacity="1" fill="none"></circle>
 </svg>
 
